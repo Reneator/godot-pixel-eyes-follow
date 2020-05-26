@@ -1,0 +1,18 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Eye.gd" type="Script" id=1]
+[ext_resource path="res://eyes bottom left.png" type="Texture" id=2]
+[ext_resource path="res://eyes top left.png" type="Texture" id=3]
+[ext_resource path="res://eyes bottom right.png" type="Texture" id=4]
+[ext_resource path="res://eyes top right.png" type="Texture" id=5]
+
+[node name="Eye" type="Node2D"]
+scale = Vector2( 20, 20 )
+script = ExtResource( 1 )
+top_left = ExtResource( 3 )
+top_right = ExtResource( 5 )
+bot_left = ExtResource( 2 )
+bot_right = ExtResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
