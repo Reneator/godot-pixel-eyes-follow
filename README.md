@@ -9,5 +9,5 @@ Eyes that follow the mouse or a Node that you define via ".target" on the eyes. 
 ## Using the Eye-Tracking
 The Eye tracking can be used in 3 different ways:
 1. target: you can set this by either in the Eye node in the inspector or by code. The Eye will then track the entity given
-2. eye_master: you can have the eye sync up with another eye, to prevent cross-eyedness or to create other (hopefully weird) effects
+2. eye_master: set this in the editor-inspector or via code. you can have the eye sync up with another eye, to prevent cross-eyedness or to create other (hopefully weird) effects
 3. follow mouse: When you dont set a target or no eye_master, the eye will follow your mouse.
