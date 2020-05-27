@@ -8,11 +8,29 @@ export (Texture) var top_right
 export (Texture) var bot_left
 export (Texture) var bot_right
 
+export (NodePath) var target_path
 var target
 
+export (NodePath) var eye_master_path # the eye will sync up with the eye mentioned here, as to prevent cross-eyedness (heart thats unhealthy)
+var eye_master
 
+
+enum STATES {TOP_LEFT, TOP_RIGHT, BOT_LEFT, BOT_RIGHT}
+var state
+
+func _ready():
+	if eye_master_path:
+		eye_master = get_node(eye_master_path)
+		return
+	
+	if target_path:
+		target = get_node(target_path)
 
 func _process(delta):
+	if eye_master:
+		var master_state = eye_master.state
+		set_state(master_state)
+		return
 	
 	var follow_position
 	if target:
@@ -27,10 +45,18 @@ func _process(delta):
 	var angle = rad2deg(radians)
 	
 	if 90 > angle and angle > 0:
-		$Sprite.texture = bot_right
+		set_state(STATES.BOT_RIGHT)
 	if 180 > angle and angle > 90:
-		$Sprite.texture = bot_left
+		set_state(STATES.BOT_LEFT)
 	if -180 < angle and angle < -90:
-		$Sprite.texture = top_left
+		set_state(STATES.TOP_LEFT)
 	if -90 < angle and angle < 0:
-		$Sprite.texture = top_right
+		set_state(STATES.TOP_RIGHT)
+
+func set_state(_state):
+	state = _state
+	match state:
+		STATES.BOT_RIGHT: $Sprite.texture = bot_right
+		STATES.BOT_LEFT: $Sprite.texture = bot_left
+		STATES.TOP_RIGHT: $Sprite.texture = top_right
+		STATES.TOP_LEFT: $Sprite.texture = top_left

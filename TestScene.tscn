@@ -9,3 +9,4 @@ position = Vector2( 64.7115, 44.0857 )
 
 [node name="Node2D2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 117.702, 44.6918 )
+eye_master_path = NodePath("../Node2D")
